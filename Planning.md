@@ -7,3 +7,8 @@
 ### 스토리보드
 ![스토리보드1](https://github.com/user-attachments/assets/dc22eb78-c88f-415c-9db3-b2d00a4964eb)
 ![스토리보드2](https://github.com/user-attachments/assets/9321a4da-2bf6-43c1-83c2-24a4b984254b)
+
+## 2024-09-04
+### 회원 스토리보드
+![로그인](https://github.com/user-attachments/assets/e6aeacb9-afb0-45db-a630-89f2bb836769)
+![회원가입](https://github.com/user-attachments/assets/6d4e007e-b194-4754-8eeb-2e11380b2d93)
