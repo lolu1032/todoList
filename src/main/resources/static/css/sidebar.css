@@ -1,0 +1,49 @@
+    body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+            }
+            .sidebar {
+                height: 100vh;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 250px;
+                background-color: #343a40;
+                padding: 1.5rem;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            .sidebar h4 {
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            .nav {
+                list-style-type: none;
+                padding: 0;
+            }
+            .nav-item {
+                height: 100px;
+                margin-bottom: 0.5rem;
+            }
+            .nav-link {
+                color: #f8f9fa;
+                text-decoration: none;
+                display: block;
+                padding: 0.5rem 1rem;
+                border-radius: 5px;
+            }
+            .login-signup {
+                text-align: center;
+                margin-top:auto;
+            }
+            .login-signup a {
+                color: #f8f9fa;
+                text-decoration: none;
+                border: 1px solid #f8f9fa;
+                padding: 0.5rem 1rem;
+                border-radius: 5px;
+                display: inline-block;
+            }

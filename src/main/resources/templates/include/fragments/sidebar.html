@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header th:fragment="sidebar">
+        <div class="sidebar">
+            <div>
+                <h4 class="text-center">오늘 뭐해?</h4>
+                <div style="height: 80px;"></div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#"><i class="fa-solid fa-list"></i> 오늘 일정</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#"><i class="fa-regular fa-calendar-days"></i> 이번달 일정</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Contact</a>
+                    </li>
+                </ul>
+                <div class="login-signup">
+                    <a class="text-white" href="#">로그인 / 회원가입</a>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
