@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -18,9 +19,14 @@ public class UsersController {
     private final UsersService service;
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody UsersDTO usersDTO) {
+    public ResponseEntity<String> signup(
+            @RequestBody UsersDTO usersDTO
+    ) {
         log.info("usersDTO={}",usersDTO);
+        Map<String, Object> map = new HashMap<>();
+        map.put("email",usersDTO.getEmail());
         try {
+            checkEmail(map);
             vaildateUsersDTO(usersDTO);
             service.insertUsers(usersDTO);
             return new ResponseEntity<>("회원가입 성공했습니다.", HttpStatus.CREATED); // 성공시 201보냄
@@ -34,12 +40,15 @@ public class UsersController {
         }
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Map<String,Object> map) {
+    public ResponseEntity<String> login(
+            @RequestBody Map<String,Object> map
+    ) {
         log.info("map={}",map);
         String email = (String) map.get("email");
         String password = (String) map.get("password");
         
         UsersDTO user = service.selectUsers(map);
+        log.info("user={}",user);
         if(user == null) {
             return new ResponseEntity<>("회원정보가 없습니다.", HttpStatus.NOT_FOUND);
         }
@@ -49,7 +58,14 @@ public class UsersController {
         return new ResponseEntity<>("로그인 성공했습니다.", HttpStatus.CREATED);
     }
 
-
+    private void checkEmail(Map<String,Object> map) {
+        String email = (String) map.get("email");
+        int n = service.checkEmail(email);
+        log.info("n={}",n);
+        if (n > 0){
+            throw new IllegalArgumentException("이미 있는 이메일입니다.");
+        }
+    }
     private void vaildateUsersDTO(UsersDTO usersDTO) {
         String emailRegExp = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
         String passwordRegExp = "^.*(?=^.{8,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$";

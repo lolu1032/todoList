@@ -20,4 +20,9 @@ public class UsersServiceImpl implements UsersService {
     public UsersDTO selectUsers(Map<String, Object> map) {
         return dao.selectUsers(map);
     }
+
+    @Override
+    public int checkEmail(String email) {
+        return dao.checkEmail(email);
+    }
 }

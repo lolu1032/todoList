@@ -10,4 +10,7 @@
     <select id="selectUsers" resultType="UsersDTO">
         select * from users where email = #{email}
     </select>
+    <select id="checkEmail" resultType="Integer">
+        select count(*) from users where email = #{email}
+    </select>
 </mapper>

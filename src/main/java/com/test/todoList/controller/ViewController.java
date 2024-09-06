@@ -14,5 +14,9 @@ public class ViewController {
     public String signup() {
         return "users/signup";
     }
+    @GetMapping("today")
+    public String today() {
+        return "board/today";
+    }
 
 }
