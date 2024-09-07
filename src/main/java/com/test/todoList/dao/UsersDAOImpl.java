@@ -18,8 +18,8 @@ public class UsersDAOImpl implements UsersDAO{
     }
 
     @Override
-    public UsersDTO selectUsers(Map<String, Object> map) {
-        return sqlSession.selectOne("com.test.todoList.usersMapper.selectUsers",map);
+    public UsersDTO selectUsers(String email) {
+        return sqlSession.selectOne("com.test.todoList.usersMapper.selectUsers",email);
     }
 
     @Override

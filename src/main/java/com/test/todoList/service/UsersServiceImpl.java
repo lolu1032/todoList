@@ -17,8 +17,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UsersDTO selectUsers(Map<String, Object> map) {
-        return dao.selectUsers(map);
+    public UsersDTO selectUsers(String email) {
+        return dao.selectUsers(email);
     }
 
     @Override
