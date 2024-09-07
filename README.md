@@ -1,3 +1,26 @@
+# 회원 시스템 (2024-09-03 ~ 2024-09-07)
+
+## 시큐리티
+시큐리티 설정입니다.
+![시큐리티](https://github.com/user-attachments/assets/db778d65-8498-4a82-8c8b-5ef2cc4ed811)
+
+## 회원가입
+회원가입 관련 기능과 유효성 검사로 확인하는 정보 그리고 유효성 검사를 통과하면 시큐리티를 통해 비밀번호 암호화를 진행합니다.
+![회원가입 컨트롤러](https://github.com/user-attachments/assets/a4804e75-fea7-45ce-b7b1-3801ec902062)
+
+## 유효성 검사
+회원가입 시 정보를 받아 유효성 검사를 시작합니다.
+![유효성 검사](https://github.com/user-attachments/assets/e7a056e1-6290-49e2-9609-1b1e899b4438)
+
+### 이메일 존재 확인
+유효성 검사를 통과한 정보의 토대로 이메일이 데이터베이스 상에 존재하는지 확인합니다.
+![이메일 중복 확인](https://github.com/user-attachments/assets/142231ee-832d-4ccd-b949-4ae78bd7e8ab)
+
+## 로그인
+로그인 기능과 Client에서 받은 정보인 비밀번호는 시큐리티에서 제공하는 matches를 사용하여 비밀번호를 암호화한것과 비교를 해서 일치하는지 확인합니다.
+![로그인 컨트롤러](https://github.com/user-attachments/assets/49a8756b-f84e-4b81-9182-699bc761c5b9)
+
+
 # 2024-09-03
 ## 컴포넌트
 ### 스프링부트
