@@ -65,25 +65,35 @@ public class UsersController {
         }
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(
-            @RequestBody Map<String,Object> map
+    public ResponseEntity<Map<String,Object>> login(
+            @RequestBody Map<String,Object> map,
+            HttpServletRequest request
     ) {
         String email = (String) map.get("email");
         String password = (String) map.get("password");
-
+        Map<String,Object> response = new HashMap<>();
         UsersDTO user = service.selectUsers(email);
         if(user == null) {
-            return new ResponseEntity<>("회원정보가 없습니다.", HttpStatus.NOT_FOUND);
+            response.put("message","회원정보가 없습니다.");
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
 
         boolean matchPw = bCryptPasswordEncoder.matches(password,user.getPassword()); // 암호화 비번 일치 확인
         log.info("matchPw={}",matchPw);
 
-        if(matchPw == false) {
-            return new ResponseEntity<>("비밀번호가 일치하지않습니다.",HttpStatus.UNAUTHORIZED);
+        if(!matchPw) {
+            response.put("message","비밀번호가 일치하지않습니다.");
+            return new ResponseEntity<>(response,HttpStatus.UNAUTHORIZED);
         }
-        return new ResponseEntity<>("로그인 성공했습니다.", HttpStatus.CREATED);
+        HttpSession session = request.getSession();
+        session.setAttribute("users",user.getEmail());
+        session.setAttribute("username",user.getName());
+        log.info("session={}",session.getId());
+
+        response.put("message","로그인 성공했습니다.");
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
 
     private void checkEmail(Map<String,Object> map) {
         String email = (String) map.get("email");

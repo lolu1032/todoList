@@ -43,47 +43,49 @@
         </div>
     </div>
     <script>
-        document.getElementById('loginForm').addEventListener('submit', async function(event) {
-        event.preventDefault(); // 기본 폼 제출 방지
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('loginForm').addEventListener('submit', async function (event) {
+                event.preventDefault(); // 기본 폼 제출 방지
 
-        // 입력 값 가져오기
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('loginPassword').value;
+                // 입력 값 가져오기
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('loginPassword').value;
 
-        // 서버에 보낼 데이터 생성
-        const data = {
-            email: email,
-            password: password
-        };
+                // 서버에 보낼 데이터 생성
+                const data = {
+                    email: email,
+                    password: password
+                };
 
-        try {
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
+                try {
+                    const response = await fetch('/api/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data),
+                    });
+
+                    const contentType = response.headers.get('Content-Type');
+                    if (contentType && contentType.includes('application/json')) {
+                        const result = await response.json();
+                        if (response.ok) {
+                            alert('로그인 성공: ' + result.message);
+                            window.location.href ="/";
+                            // 로그인 성공 시 페이지 리다이렉션 등 추가 처리 가능
+                        } else {
+                            alert('로그인 실패: ' + (result.error || result.message));
+                        }
+                    } else {
+                        console.error('Unexpected response format');
+                        alert('서버 응답이 예상과 다릅니다.');
+                    }
+                } catch (error) {
+                    console.error('로그인 중 오류 발생:', error);
+                    alert('서버 오류 발생.');
+                }
             });
-
-         const contentType = response.headers.get('Content-Type');
-        if (contentType && contentType.includes('application/json')) {
-            const result = await response.json();
-            if (response.ok) {
-                alert('로그인 성공: ' + result.message);
-                // 로그인 성공 시 페이지 리다이렉션 등 추가 처리 가능
-            } else {
-                alert('로그인 실패: ' + (result.error || result.message));
-            }
-        } else {
-            const text = await response.text(); // JSON이 아닌 경우 텍스트로 처리
-            console.error('Unexpected response format:', text);
-            alert('서버 응답이 예상과 다릅니다.');
-        }
-    } catch (error) {
-        console.error('로그인 중 오류 발생:', error);
-        alert('서버 오류 발생.');
-    }
-});
+        });
     </script>
 </body>
 </html>

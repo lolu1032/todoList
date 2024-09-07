@@ -24,7 +24,9 @@ public class SecurityConfig {
             "/api/signup",
             "/css/**",
             "/js/**",
-            "/image/**"
+            "/image/**",
+            "/users/login",
+            "/users/signup"
     };
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -44,6 +46,8 @@ public class SecurityConfig {
                         .disable()
                 )
                 .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
                         .permitAll()
                 );
         return http.build();

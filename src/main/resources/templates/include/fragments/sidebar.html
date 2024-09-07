@@ -9,7 +9,17 @@
     <div class="sidebar">
         <div>
             <h4 class="text-center"><a class="text-white" style="text-decoration-line:none;" href="/">오늘 뭐해?</a></h4>
-            <div style="height: 80px;"></div>
+            <div style="height: 80px;" th:if="${session.users != null}">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span th:text="${session.username} + '님 환영합니다!'" style="max-width:120px;"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="/profile">내 정보</a></li> <!-- 내 정보로 이동 -->
+                        <li><a class="dropdown-item" href="/logout">로그아웃</a></li> <!-- 로그아웃 -->
+                    </ul>
+                </div>
+            </div>
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link text-white" style="font-size:18px;" href="/today"><i class="fa-solid fa-list"></i> 오늘 일정</a>
@@ -21,7 +31,7 @@
                     <a class="nav-link text-white" href="#">Contact</a>
                 </li>
             </ul>
-            <div class="login-signup">
+            <div class="login-signup" th:if="${session.users == null}">
                 <a class="text-white" href="/users/login">로그인 / 회원가입</a>
             </div>
         </div>
