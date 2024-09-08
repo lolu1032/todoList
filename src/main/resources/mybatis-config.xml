@@ -4,8 +4,10 @@
 <configuration>
     <typeAliases>
         <typeAlias type="com.test.todoList.dto.UsersDTO" alias="UsersDTO"/>
+        <typeAlias type="com.test.todoList.dto.BoardsDTO" alias="BoardsDTO"/>
     </typeAliases>
     <mappers>
         <mapper resource="mapper/usersMapper.xml"/>
+        <mapper resource="mapper/boardsMapper.xml"/>
     </mappers>
 </configuration>

@@ -20,13 +20,13 @@ public class SecurityConfig {
             "/resources/**",
             "/static/**",
             "/",
-            "/api/login",
-            "/api/signup",
+            "/today",
             "/css/**",
             "/js/**",
             "/image/**",
             "/users/login",
-            "/users/signup"
+            "/users/signup",
+            "/api/**"
     };
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

@@ -81,7 +81,7 @@ public class UsersController {
         boolean matchPw = bCryptPasswordEncoder.matches(password,user.getPassword()); // 암호화 비번 일치 확인
         log.info("matchPw={}",matchPw);
 
-        if(!matchPw) {
+        if(matchPw==false) {
             response.put("message","비밀번호가 일치하지않습니다.");
             return new ResponseEntity<>(response,HttpStatus.UNAUTHORIZED);
         }
@@ -120,7 +120,6 @@ public class UsersController {
             throw new IllegalArgumentException("example@naver.com 형식에 맞게 입력해주세요.");
         }
         if(usersDTO.getPassword() == null || usersDTO.getPassword().trim().isEmpty()) {
-            log.debug("={}");
             throw new IllegalArgumentException("비밀번호가 비어있습니다.");
         }
         if(!usersDTO.getPassword().matches(passwordRegExp)) {

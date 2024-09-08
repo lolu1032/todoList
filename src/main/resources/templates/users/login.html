@@ -43,9 +43,8 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('loginForm').addEventListener('submit', async function (event) {
-                event.preventDefault(); // 기본 폼 제출 방지
+            document.getElementById('loginForm').addEventListener('submit', async function (e) {
+                e.preventDefault(); // 기본 폼 제출 방지
 
                 // 입력 값 가져오기
                 const email = document.getElementById('email').value;
@@ -66,26 +65,19 @@
                         body: JSON.stringify(data),
                     });
 
-                    const contentType = response.headers.get('Content-Type');
-                    if (contentType && contentType.includes('application/json')) {
-                        const result = await response.json();
-                        if (response.ok) {
-                            alert('로그인 성공: ' + result.message);
-                            window.location.href ="/";
-                            // 로그인 성공 시 페이지 리다이렉션 등 추가 처리 가능
-                        } else {
-                            alert('로그인 실패: ' + (result.error || result.message));
-                        }
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        alert("로그인 성공: " + result.message);
+                        window.location.href ="/";
                     } else {
-                        console.error('Unexpected response format');
-                        alert('서버 응답이 예상과 다릅니다.');
+                        alert("로그인 실패: " + (result.error || result.message));
                     }
                 } catch (error) {
-                    console.error('로그인 중 오류 발생:', error);
-                    alert('서버 오류 발생.');
+                    console.error("로그인 중 오류 발생:", error);
+                    alert("서버 오류 발생.");
                 }
             });
-        });
     </script>
 </body>
 </html>

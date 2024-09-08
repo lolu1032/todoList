@@ -20,11 +20,8 @@
                             <div class="card-body p-4">
                                 <div class="row justify-content-center">
                                     <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1"style="width:80%;">
-
                                         <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">회원가입</p>
-
                                         <form class="mx-1 mx-md-4" id="signupForm">
-
                                             <div class="d-flex flex-row align-items-center mb-4">
                                                 <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                                 <div data-mdb-input-init class="form-outline flex-fill mb-0">
@@ -68,48 +65,47 @@
         </section>
     </div>
     <script>
-        document.getElementById('signupForm').addEventListener('submit', async function(event) {
-          event.preventDefault(); // 기본 폼 제출 방지
+        document.getElementById('signupForm').addEventListener('submit', async function(e) {
+              e.preventDefault();
 
-          const name = document.getElementById('name').value;
-          const email = document.getElementById('email').value;
-          const password = document.getElementById('password').value;
-          const confirmPassword = document.getElementById('confirmPassword').value;
+              const name = document.getElementById('name').value;
+              const email = document.getElementById('email').value;
+              const password = document.getElementById('password').value;
+              const confirmPassword = document.getElementById('confirmPassword').value;
 
-          if (password != confirmPassword) {
-              alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
-              return;
-          }
-
-          const data = {
-              name: name,
-              email: email,
-              password: password
-          };
-
-          try {
-              const response = await fetch('/api/signup', {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify(data),
-              });
-
-              // 응답을 JSON으로 처리
-              const result = await response.json();
-
-              if (response.ok) {
-                  alert('회원가입 성공: ' + result.message);
-                  window.location.href = '/users/login'; // 로그인 페이지로 리다이렉션
-              } else {
-                  alert('회원가입 실패: ' + result.error || result.message);
+              if (password != confirmPassword) {
+                  alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+                  return;
               }
-          } catch (error) {
-              console.error('회원가입 중 오류 발생:', error);
-              alert('서버 오류 발생.');
-          }
-      });
+
+              const data = {
+                  name: name,
+                  email: email,
+                  password: password
+              };
+
+              try {
+                  const response = await fetch('/api/signup', {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify(data),
+                  });
+
+                  const result = await response.json();
+
+                  if (response.ok) {
+                      alert("회원가입 성공: " + result.message);
+                      window.location.href = "/users/login";
+                  } else {
+                      alert("회원가입 실패: " + result.error || result.message);
+                  }
+              } catch (error) {
+                  console.error("회원가입 중 오류 발생:", error);
+                  alert("서버 오류 발생.");
+              }
+        });
     </script>
 </body>
 </html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.todoList.boardsMapper">
+    <select id="boardsList" resultType="BoardsDTO">
+        select board.id as boardId,content from board
+    </select>
+    <select id="detailBoards" resultType="BoardsDTO">
+        select board.id as boardId,content,addExp,deadline,createDate,users.name from board
+        join users on users.id = board.users_id
+        where board.id = #{boardId}
+    </select>
+    <update id="updateBoards" parameterType="java.util.Map">
+        update board
+        <set>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="addExp != null">
+                addExp = #{addExp},
+            </if>
+            <if test="deadline != null">
+                deadline = #{deadline},
+            </if>
+        </set>
+        where board.id = #{boardId}
+    </update>
+</mapper>
