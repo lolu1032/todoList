@@ -14,8 +14,8 @@ public class BoardsDAOImpl implements BoardsDAO{
     private final SqlSession sqlSession;
 
     @Override
-    public List<BoardsDTO> BoardsList() {
-        return sqlSession.selectList("com.test.todoList.boardsMapper.boardsList");
+    public List<BoardsDTO> BoardsList(int userId) {
+        return sqlSession.selectList("com.test.todoList.boardsMapper.boardsList",userId);
     }
 
     @Override
@@ -26,6 +26,11 @@ public class BoardsDAOImpl implements BoardsDAO{
     @Override
     public int updateBoards(Map<String, Object> map) {
         return sqlSession.update("com.test.todoList.boardsMapper.updateBoards",map);
+    }
+
+    @Override
+    public int insertBoards(BoardsDTO boardsDTO) {
+        return sqlSession.insert("com.test.todoList.boardsMapper.insertBoards",boardsDTO);
     }
 
 }

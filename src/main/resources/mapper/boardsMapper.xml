@@ -5,7 +5,9 @@
 
 <mapper namespace="com.test.todoList.boardsMapper">
     <select id="boardsList" resultType="BoardsDTO">
-        select board.id as boardId,content from board
+        select board.id as boardId,content,users_id as userId from board
+        join users on users.id = board.users_id
+        where users_id = #{userId}
     </select>
     <select id="detailBoards" resultType="BoardsDTO">
         select board.id as boardId,content,addExp,deadline,createDate,users.name from board
@@ -27,4 +29,8 @@
         </set>
         where board.id = #{boardId}
     </update>
+    <insert id="insertBoards" parameterType="BoardsDTO">
+        insert into board (content,addExp, deadline, createDate,users_id)
+        values (#{content},#{addExp},#{deadline},now(),#{userId});
+    </insert>
 </mapper>

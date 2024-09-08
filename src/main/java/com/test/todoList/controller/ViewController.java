@@ -2,6 +2,7 @@ package com.test.todoList.controller;
 
 import com.test.todoList.dto.BoardsDTO;
 import com.test.todoList.service.BoardsService;
+import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,9 +33,13 @@ public class ViewController {
         return "users/signup";
     }
     @GetMapping("/today")
-    public String today(Model model) {
-        List<BoardsDTO> list = service.boardsList();
-        model.addAttribute("list",list);
+    public String today(Model model, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute("userId");
+        if(userId != null) {
+            List<BoardsDTO> list = service.boardsList(userId);
+            log.info("userId={}",userId);
+            model.addAttribute("list",list);
+        }
         return "board/today";
     }
 }

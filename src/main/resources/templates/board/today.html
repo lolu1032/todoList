@@ -48,7 +48,22 @@
                                         <th scope="col">삭제</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody th:if="${session.userId  == null}">
+                                    <tr th:each="list : ${list}">
+                                        <th id="boardId" scope="row" th:text="${list.boardId}">1</th>
+                                        <td th:text="${list.content}">Buy groceries for next week</td>
+                                        <td>
+                                            <button type="button" th:data-id="${list.boardId}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">수정</button>
+                                        </td>
+                                        <td>
+                                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-success ms-1">완료</button>
+                                        </td>
+                                        <td>
+                                            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger">삭제</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tbody th:unless="${session.userId == null}">
                                     <tr th:each="list : ${list}">
                                         <th id="boardId" scope="row" th:text="${list.boardId}">1</th>
                                         <td th:text="${list.content}">Buy groceries for next week</td>

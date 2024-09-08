@@ -13,8 +13,8 @@ import java.util.Map;
 public class BoardsServiceImpl implements BoardsService{
     private final BoardsDAO dao;
     @Override
-    public List<BoardsDTO> boardsList() {
-        return dao.BoardsList();
+    public List<BoardsDTO> boardsList(int userId) {
+        return dao.BoardsList(userId);
     }
 
     @Override
@@ -25,5 +25,10 @@ public class BoardsServiceImpl implements BoardsService{
     @Override
     public int updateBoards(Map<String, Object> map) {
         return dao.updateBoards(map);
+    }
+
+    @Override
+    public int insertBoards(BoardsDTO boardsDTO) {
+        return dao.insertBoards(boardsDTO);
     }
 }

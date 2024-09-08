@@ -88,7 +88,9 @@ public class UsersController {
         HttpSession session = request.getSession();
         session.setAttribute("users",user.getEmail());
         session.setAttribute("username",user.getName());
+        session.setAttribute("userId",user.getUserId());
         log.info("session={}",session.getId());
+        log.info("sessionUserId={}",session.getAttribute("userId"));
 
         response.put("message","로그인 성공했습니다.");
         return new ResponseEntity<>(response, HttpStatus.CREATED);

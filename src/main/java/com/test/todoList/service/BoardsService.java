@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface BoardsService {
-    List<BoardsDTO> boardsList();
+    List<BoardsDTO> boardsList(int userId);
     BoardsDTO detailBoards(String boardId);
     int updateBoards(Map<String,Object> map);
+
+    int insertBoards(BoardsDTO boardsDTO);
 }

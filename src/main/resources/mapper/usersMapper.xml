@@ -8,7 +8,7 @@
         insert into users (email,password,name) values (#{email},#{password},#{name})
     </insert>
     <select id="selectUsers" resultType="UsersDTO">
-        select * from users where email = #{email}
+        select users.id as userId,email,name,password from users where email = #{email}
     </select>
     <select id="checkEmail" resultType="Integer">
         select count(*) from users where email = #{email}
