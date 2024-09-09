@@ -60,4 +60,8 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
+# 추가사항
+INSERT INTO todolist.users (id, email, password, name) 
+VALUES (0, 'guest@example.com', 'guest', 'guest');
+ALTER TABLE users AUTO_INCREMENT = 1;
+### id가 오토 인크리먼트여서 0을 넣으면 1이 들어갑니다. 그래서  저 값을 넣어주시고 수동으로 0으로 바꾼다음 ALTER TABLE을 통해 id의 오토인크리먼트를 1로 초기화 해서 실행 해주시면 감사하겠습니다.
