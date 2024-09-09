@@ -42,4 +42,5 @@
 ### 성공
 성공을 누르면 성공 컬럼이 1로 업데이트 되면서 소프트 딜리트를 사용하여 리스트에서는 사라집니다.<br>
 <br>
-![성공](https://github.com/user-attachments/assets/2041d6d1-9bf6-4ca3-b551-f1f904119298)
+![최종 찐 성공](https://github.com/user-attachments/assets/ab667703-d4d2-4f82-8b5e-8a9ff67b82a0)
+
