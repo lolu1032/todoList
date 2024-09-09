@@ -2,6 +2,7 @@ package com.test.todoList.controller;
 
 import com.test.todoList.dto.BoardsDTO;
 import com.test.todoList.service.BoardsService;
+import jakarta.servlet.http.HttpSession;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -52,28 +53,31 @@ public class BoardsController {
         }
     }
     @PostMapping("/insertToday")
-    public ResponseEntity<Map<String,Object>> insertToday(@RequestBody Map<String,Object> map) {
+    public ResponseEntity<Map<String,Object>> insertToday(@RequestBody Map<String,Object> map, HttpSession session) {
         Map<String,Object> response = new HashMap<>();
         BoardsDTO boardsDTO = new BoardsDTO();
-        if((String) map.get("content") == null) {
-            response.put("error","제목을 넣어주세요.");
-            return  new ResponseEntity<>(response,HttpStatus.FORBIDDEN);
-        }else {
+        int insert;
+        if (map.get("content") == null || ((String) map.get("content")).trim().isEmpty()) {
+            response.put("error", "제목을 넣어주세요.");
+            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+        } else {
             boardsDTO.setContent((String) map.get("content"));
         }
-        if((String) map.get("deadline") == null) {
-            response.put("error","마감일 넣어주세요.");
-            return  new ResponseEntity<>(response,HttpStatus.FORBIDDEN);
-        }else {
+
+        if (map.get("deadline") == null || ((String) map.get("deadline")).trim().isEmpty()) {
+            response.put("error", "마감일을 넣어주세요.");
+            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+        } else {
             boardsDTO.setDeadline(LocalDate.parse((String) map.get("deadline")));
         }
-        if((Integer) map.get("userId") == null) {
-            boardsDTO.setUserId(0);
-        }else {
-            boardsDTO.setUserId((Integer) map.get("userId"));
-        }
         boardsDTO.setAddExp((String) map.get("addExp"));
-        int insert = service.insertBoards(boardsDTO);
+        if(session.getAttribute("userId") == null) {
+            boardsDTO.setUserId(0);
+            insert = service.insertBoards(boardsDTO);
+        }else {
+            boardsDTO.setUserId((Integer) session.getAttribute("userId"));
+            insert = service.insertBoards(boardsDTO);
+        }
         if(insert <= 0) {
             response.put("message","추가실패");
             return new ResponseEntity<>(response,HttpStatus.INTERNAL_SERVER_ERROR);
@@ -81,5 +85,30 @@ public class BoardsController {
             response.put("message","추가성공");
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
+    }
+    @PostMapping("/delete")
+    public ResponseEntity<Map<String,Object>> delete(@RequestBody Map<String,Object> map) {
+        Map<String,Object> response = new HashMap<>();
+        String boardId = (String) map.get("boardId");
+        int del = service.deleteBoard(boardId);
+        log.info("del={}",del);
+        if(del <= 0) {
+            response.put("message","삭제 실패했습니다.");
+            return new ResponseEntity<>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }else {
+            response.put("message","삭제 성공했습니다.");
+            return new ResponseEntity<>(response,HttpStatus.OK);
+        }
+    }
+    @PostMapping("/sucess")
+    public ResponseEntity<Map<String,Object>> sucess(@RequestBody Map<String,Object> map) {
+        Map<String,Object> response = new HashMap<>();
+        String boardId = (String) map.get("boardId");
+        int suc = service.deleteBoard(boardId);
+        log.info("suc={}",suc);
+        if(suc > 0) {
+            response.put("message","일정을 완료했습니다!");
+        }
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 }

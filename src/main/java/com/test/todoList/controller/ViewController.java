@@ -35,11 +35,16 @@ public class ViewController {
     @GetMapping("/today")
     public String today(Model model, HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userId");
+        List<BoardsDTO> list;
         if(userId != null) {
-            List<BoardsDTO> list = service.boardsList(userId);
+            service.updateUserId(userId);
+            list = service.boardsList(userId);
             log.info("userId={}",userId);
             model.addAttribute("list",list);
+            return "board/today";
         }
+        list = service.boardsList(0);
+        model.addAttribute("list",list);
         return "board/today";
     }
 }

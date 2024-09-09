@@ -5,9 +5,9 @@
 
 <mapper namespace="com.test.todoList.boardsMapper">
     <select id="boardsList" resultType="BoardsDTO">
-        select board.id as boardId,content,users_id as userId from board
+        select board.id as boardId,content,users_id as userId,board.sucess,board.delete from board
         join users on users.id = board.users_id
-        where users_id = #{userId}
+        where users_id = #{userId} and sucess is null and `delete` is null
     </select>
     <select id="detailBoards" resultType="BoardsDTO">
         select board.id as boardId,content,addExp,deadline,createDate,users.name from board
@@ -33,4 +33,15 @@
         insert into board (content,addExp, deadline, createDate,users_id)
         values (#{content},#{addExp},#{deadline},now(),#{userId});
     </insert>
+    <update id="updateUserId" parameterType="BoardsDTO">
+        update board set users_id = #{userId}
+        where users_id = 0
+    </update>
+    <delete id="deleteBoard" parameterType="BoardsDTO">
+        delete from board where board.id = #{boardId}
+    </delete>
+    <update id="sucessBoard" parameterType="BoardsDTO">
+        update board set sucess = #{sucess}
+        where board.id = #{boardId}
+    </update>
 </mapper>

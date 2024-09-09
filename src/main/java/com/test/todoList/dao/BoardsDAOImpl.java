@@ -33,4 +33,19 @@ public class BoardsDAOImpl implements BoardsDAO{
         return sqlSession.insert("com.test.todoList.boardsMapper.insertBoards",boardsDTO);
     }
 
+    @Override
+    public int updateUserId(int userId) {
+        return sqlSession.update("com.test.todoList.boardsMapper.updateUserId",userId);
+    }
+
+    @Override
+    public int deleteBoard(String boardId) {
+        return sqlSession.delete("com.test.todoList.boardsMapper.deleteBoard",boardId);
+    }
+
+    @Override
+    public int sucessBoard(String boardId) {
+        return sqlSession.update("com.test.todoList.boardsMapper.sucessBoard",boardId);
+    }
+
 }

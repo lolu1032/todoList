@@ -16,7 +16,6 @@ public class BoardsServiceImpl implements BoardsService{
     public List<BoardsDTO> boardsList(int userId) {
         return dao.BoardsList(userId);
     }
-
     @Override
     public BoardsDTO detailBoards(String boardId) {
         return dao.detailBoards(boardId);
@@ -30,5 +29,20 @@ public class BoardsServiceImpl implements BoardsService{
     @Override
     public int insertBoards(BoardsDTO boardsDTO) {
         return dao.insertBoards(boardsDTO);
+    }
+
+    @Override
+    public int updateUserId(int userId) {
+        return dao.updateUserId(userId);
+    }
+
+    @Override
+    public int deleteBoard(String boardId) {
+        return dao.deleteBoard(boardId);
+    }
+
+    @Override
+    public int sucessBoard(String boardId) {
+        return dao.sucessBoard(boardId);
     }
 }
