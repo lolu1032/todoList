@@ -1,29 +1,45 @@
-# 2024-09-03
-## 컴포넌트
-### 스프링부트
-설명 : 스프링부트는 스프링 프레임워크로부터 편하게 사용할 수 있으며 스프링부트 자체에서 톰캣을 내장하고있어 더욱 편하게 사용할 수 있습니다. <br>
-사용 이유 : 처음 프로젝트때는 스프링 레거시를 사용했기때문에 이번엔 스프링부트로 해보자고 생각하여 사용하게되었습니다.
-### MyBatis
-설명 : 마이바티스는 XML파일을 사용하여 SQL 쿼리문을 작성하여 자바와 데이터베이스를 연결시켜주는 프레임워크입니다. <br>
-사용 이유 : JPA를 사용하면 편하긴하겠지만 SQL 쿼리문을 직접 작성하는것도 중요하다 생각하여 마이바티스를 선택하였습니다.
-### Thymeleaf
-설명 : 타임리프는 컨트룰러에서 보내는 데이터를 받아 뷰로 보여주는 역할을 합니다. <br>
-사용 이유: 스프링부트를 사용하면 타임리프에 지원하는게 많아 선택한것도 있지만 JSP와 달리 HTML의 원본을 유지할 수 있다는점에 선택하였습니다.
-### MySQL
-설명 : MySQL은 관계형 데이터베이스 (RDBMS)이며 SQL을 사용하여 데이터를 저장하고 관리합니다. <br>
-사용 이유 : MySQL은 무료이기때문에 사용하였습니다.
-### 피그마
-설명 : 디자인을 꾸밀 수 있는 툴입니다. <br>
-사용 이유 : 스토리보드를 만들어서 프론트쪽은 어떤식으로 갈지 기반을 잡을려고 사용했습니다.
-# 2024-09-05
-## 컴포넌트
-### 포스트맨
-설명 : API 기능들을 테스트 할 수 있는 툴이며 스프링부트에서 @RestController을 통해 HTTP요청에 대한 응답을 볼 수 있습니다. <br>
-사용 이유 : 지금까지는 @Controller을 통해 모든걸 작업해서 이번에 한번 @RestController를 통해 HTTP 요청을 보내서 응답하는 식으로 만들고 싶어서 사용했습니다.
-# 2024-09-06
-## 컴포넌트
-### 스프링 시큐리티 6
-설명 : 스프링 시큐리티는 사용자의 계정을 인가와 인증을 하며 보안을 담당하는 스프링 프레임워크 중 하나다.
-사용 이유 : 스프링 시큐리티를 사용하여 비밀번호를 암호화해서 저장해 사용해보고싶어서 처음이지만 사용해보았다.
-# 2024-09-09
-## 최종 화면
+# 투두리스트
+**Spring Security를 이용한 회원과 투두리스트 CRUD 업무로만 이루어진 투두리스트입니다.**
+## 메인화면
+시간 부족으로 인해 메인화면은 현재 구현되지 않았습니다.
+<br>
+![최종 메인](https://github.com/user-attachments/assets/b64744f5-2a11-4c58-9fd9-ea89d18aa87b)
+
+## 투두리스트
+![최종 투두리스트](https://github.com/user-attachments/assets/b3f08880-d5d4-4e48-9828-9e644627edf2)
+
+
+## 회원가입
+회원가입은 Spring Security를 이용한 비밀번호 암호화 기능을 적용하여 구현하였습니다.
+- **회원가입 성공 화면** <br>
+  ![최종 회원가입 성공](https://github.com/user-attachments/assets/da2365bc-23bb-4b54-bfc3-ddf5a273ccb0)
+- **시큐리티 비밀번호 암호화**<br>
+  ![(최종)시큐리티 비밀번호 암호화](https://github.com/user-attachments/assets/a7772b25-5e32-49ef-b54c-479621002851)
+
+## 로그인
+- **로그인 성공 화면**<br>
+  ![최종 로그인성공](https://github.com/user-attachments/assets/cd21afce-20ac-43a1-90f4-bc0bce08670d)
+- **로그인 후 메인 화면**<br>
+  ![최종 로그인 후 메인](https://github.com/user-attachments/assets/80044369-c0eb-4eec-8723-ee527654be87)
+
+## 투두리스트 CRUD
+### 상세페이지 / 수정페이지
+![최종 상세페이지겸 수정페이지](https://github.com/user-attachments/assets/07243a51-3a2c-4d72-a9dd-235d70d080d9)
+
+### 수정 성공 시
+![최종 수정성공](https://github.com/user-attachments/assets/86629170-2d59-40a1-8f98-07ec7a4ea01b)
+
+### 추가 페이지
+![최종 추가 성공](https://github.com/user-attachments/assets/7638681c-38f7-42b2-970d-0722928ef7b9)
+
+### 오류들
+- **제목 오류**<br>
+  ![최종 제목 오류](https://github.com/user-attachments/assets/b1bfa51b-1e31-4ad1-beee-79a099967c00)
+- **마감일 오류**<br>
+  ![최종 마감일 오류](https://github.com/user-attachments/assets/83b6e635-6458-4c26-a131-d2f0d9e6133a)
+
+### 완료 및 삭제
+- **삭제 성공 시**: 데이터베이스에서 아예 삭제됩니다.
+  ![최종 삭제성공](https://github.com/user-attachments/assets/692373eb-b5e5-4fb0-925b-a290de46a0df)
+- **일정 완료**: 소프트 딜리트를 사용하여 리스트에서는 보이지 않지만 데이터베이스에 남아있습니다.
+  ![최종 일정 완료](https://github.com/user-attachments/assets/781d4c86-02a4-4996-b854-5d5d5a9c627b)
