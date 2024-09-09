@@ -1,4 +1,9 @@
 # 과제 기획
+## 2024-09-09
+### (최종) 기능 정리
+![최종 기획](https://github.com/user-attachments/assets/76a70374-5f5c-4d18-a8db-213cfe1d801f)
+캘린더도 하고싶었지만 욕심이였습니다..그래서 삭제했습니다.
+
 ## 2024-09-03 
 ### 기능 정리
 ![캡처](https://github.com/user-attachments/assets/f1049ac7-e89e-40c8-80dc-3d2a133bf8bd)
